@@ -24,11 +24,15 @@ public class QuestionController {
     public String showQuestionList(@NotNull Model model) {
         List<Question> questionList = this.questionService.getList();
         model.addAttribute("questionList", questionList);
+
         return "questionList";
     }
 
-    @RequestMapping(value = "/question/detail/{id}")
+    @RequestMapping("/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
-        return "question_detail";
+        Question question = this.questionService.getQuestion(id);
+        model.addAttribute("question", question);
+
+        return "questionDetail";
     }
 }
