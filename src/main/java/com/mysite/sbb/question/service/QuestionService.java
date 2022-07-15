@@ -4,9 +4,9 @@ import com.mysite.sbb.question.dao.QuestionRepository;
 import com.mysite.sbb.question.domain.Question;
 import com.mysite.sbb.util.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +14,7 @@ import java.util.Optional;
 @Service
 public class QuestionService {
 
-    @Autowired
-    public QuestionRepository questionRepository;
+    private final QuestionRepository questionRepository;
 
     public List<Question> getList() {
         return this.questionRepository.findAll();
@@ -28,5 +27,13 @@ public class QuestionService {
         } else {
             throw new DataNotFoundException("question not found");
         }
+
+    }
+    public void create(String subject, String content) {
+        Question q = new Question();
+        q.setSubject(subject);
+        q.setContent(content);
+        q.setCreateDate(LocalDateTime.now());
+        this.questionRepository.save(q);
     }
 }
