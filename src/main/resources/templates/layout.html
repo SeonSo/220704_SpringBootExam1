@@ -7,10 +7,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">
     <!-- sbb CSS -->
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
-    <title>Hello, sbb!</title>
     <title>Title</title>
 </head>
 <body>
-    <th:block layout:fragment="content"></th:block>
+<!-- 네비게이션바 -->
+<nav th:replace="navbar :: navbarFragment"></nav>
+<!-- 삽입될 내용 st -->
+<th:block layout:fragment="content"></th:block>
+<!-- 삽입될 내용 en -->
 </body>
 </html>
